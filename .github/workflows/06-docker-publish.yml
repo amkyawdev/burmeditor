@@ -1,4 +1,4 @@
-name: 🐳 Publish Docker Image
+name: Publish Docker Image
 
 on:
   push:
@@ -14,7 +14,7 @@ env:
 
 jobs:
   docker:
-    name: 🏗️ Build & Push Docker
+    name: Build & Push Docker
     runs-on: ubuntu-latest
     permissions:
       contents: read

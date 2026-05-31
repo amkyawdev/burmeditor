@@ -1,4 +1,4 @@
-name: 🧹 Cleanup Old Artifacts
+name: Cleanup Old Artifacts
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   cleanup:
-    name: 🗑️ Delete Old Artifacts
+    name: Delete Old Artifacts
     runs-on: ubuntu-latest
     
     steps:

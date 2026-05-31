@@ -1,4 +1,4 @@
-name: 🌐 Build Web
+name: Build Web
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
 
 jobs:
   build-web:
-    name: 🏗️ Build Web
+    name: Build Web
     runs-on: ubuntu-latest
     timeout-minutes: 20
     

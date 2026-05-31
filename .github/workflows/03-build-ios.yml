@@ -1,4 +1,4 @@
-name: 🍎 Build iOS
+name: Build iOS
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
 
 jobs:
   build-ios:
-    name: 🏗️ Build iOS
+    name: Build iOS
     runs-on: macos-latest
     timeout-minutes: 60
     
