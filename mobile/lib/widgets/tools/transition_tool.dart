@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
-class TransitionTool extends StatelessWidget {
+class TransitionTool extends StatefulWidget {
   final Function(Map<String, dynamic>) onTransitionChanged;
 
   const TransitionTool({super.key, required this.onTransitionChanged});
+
+  @override
+  State<TransitionTool> createState() => _TransitionToolState();
+}
+
+class _TransitionToolState extends State<TransitionTool> {
+  String? _selectedTransition;
+  double _duration = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +24,6 @@ class TransitionTool extends StatelessWidget {
       {'id': 'flip', 'name': 'Flip', 'icon': Icons.flip},
     ];
 
-    String? selectedTransition;
-    double duration = 1.0;
-
     return ListView(
       children: [
         const Text('Transitions', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
@@ -28,10 +33,12 @@ class TransitionTool extends StatelessWidget {
           spacing: 12,
           runSpacing: 12,
           children: transitions.map((t) {
-            final isSelected = selectedTransition == t['id'];
+            final isSelected = _selectedTransition == t['id'];
             return GestureDetector(
               onTap: () {
-                // Select transition
+                setState(() {
+                  _selectedTransition = t['id'] as String?;
+                });
               },
               child: Container(
                 width: 100,
@@ -62,15 +69,24 @@ class TransitionTool extends StatelessWidget {
         const SizedBox(height: 24),
         const Text('Duration', style: TextStyle(fontWeight: FontWeight.w500)),
         Slider(
-          value: duration,
+          value: _duration,
           min: 0.1,
           max: 3.0,
           divisions: 29,
-          label: '${duration.toStringAsFixed(1)}s',
+          label: '${_duration.toStringAsFixed(1)}s',
           onChanged: (value) {
-            // Update duration
+            setState(() {
+              _duration = value;
+            });
           },
         ),
+        
+        const SizedBox(height: 16),
+        if (_selectedTransition != null)
+          Text(
+            'Selected: $_selectedTransition (${_duration.toStringAsFixed(1)}s)',
+            style: const TextStyle(color: Colors.grey),
+          ),
       ],
     );
   }

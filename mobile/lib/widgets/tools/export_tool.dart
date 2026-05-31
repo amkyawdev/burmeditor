@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ExportTool extends StatelessWidget {
+class ExportTool extends StatefulWidget {
   final Function(Map<String, dynamic>) onExportChanged;
 
   const ExportTool({super.key, required this.onExportChanged});
 
   @override
+  State<ExportTool> createState() => _ExportToolState();
+}
+
+class _ExportToolState extends State<ExportTool> {
+  String _selectedFormat = 'mp4';
+  String _selectedQuality = 'high';
+
+  @override
   Widget build(BuildContext context) {
-    String selectedFormat = 'mp4';
-    String selectedQuality = 'high';
-    
     return ListView(
       children: [
         const Text('Export Settings', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
@@ -21,9 +26,9 @@ class ExportTool extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            _FormatOption(label: 'MP4', selected: selectedFormat == 'mp4', onTap: () {}),
-            _FormatOption(label: 'WebM', selected: selectedFormat == 'webm', onTap: () {}),
-            _FormatOption(label: 'AVI', selected: selectedFormat == 'avi', onTap: () {}),
+            _FormatOption(label: 'MP4', selected: _selectedFormat == 'mp4', onTap: () => setState(() => _selectedFormat = 'mp4')),
+            _FormatOption(label: 'WebM', selected: _selectedFormat == 'webm', onTap: () => setState(() => _selectedFormat = 'webm')),
+            _FormatOption(label: 'AVI', selected: _selectedFormat == 'avi', onTap: () => setState(() => _selectedFormat = 'avi')),
           ],
         ),
         
@@ -34,22 +39,25 @@ class ExportTool extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            _FormatOption(label: 'Low (480p)', selected: selectedQuality == 'low', onTap: () {}),
-            _FormatOption(label: 'Medium (720p)', selected: selectedQuality == 'medium', onTap: () {}),
-            _FormatOption(label: 'High (1080p)', selected: selectedQuality == 'high', onTap: () {}),
-            _FormatOption(label: 'Ultra (4K)', selected: selectedQuality == 'ultra', onTap: () {}),
+            _FormatOption(label: 'Low (480p)', selected: _selectedQuality == 'low', onTap: () => setState(() => _selectedQuality = 'low')),
+            _FormatOption(label: 'Medium (720p)', selected: _selectedQuality == 'medium', onTap: () => setState(() => _selectedQuality = 'medium')),
+            _FormatOption(label: 'High (1080p)', selected: _selectedQuality == 'high', onTap: () => setState(() => _selectedQuality = 'high')),
+            _FormatOption(label: 'Ultra (4K)', selected: _selectedQuality == 'ultra', onTap: () => setState(() => _selectedQuality = 'ultra')),
           ],
         ),
         
         const SizedBox(height: 24),
-        const Text('Estimated File Size', style: TextStyle(fontWeight: FontWeight.w500)),
+        const Text('Selected Settings', style: TextStyle(fontWeight: FontWeight.w500)),
         const SizedBox(height: 8),
-        const Text('~250 MB', style: TextStyle(color: Colors.grey)),
+        Text('Format: $_selectedFormat | Quality: $_selectedQuality', style: const TextStyle(color: Colors.grey)),
         
         const SizedBox(height: 32),
         ElevatedButton.icon(
           onPressed: () {
-            // Start export
+            widget.onExportChanged({
+              'format': _selectedFormat,
+              'quality': _selectedQuality,
+            });
           },
           icon: const Icon(Icons.file_download),
           label: const Text('Export Video'),
