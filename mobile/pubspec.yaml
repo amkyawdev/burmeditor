@@ -64,7 +64,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
   
   assets:
     - assets/translations/
@@ -82,9 +81,3 @@ flutter:
     - family: BootstrapIcons
       fonts:
         - asset: assets/fonts/bootstrap-icons.woff2
-
-flutter_intl:
-  enabled: true
-  arb_dir: lib/l10n
-  template_arb_file: intl_en.arb
-  output_dir: lib/generated
