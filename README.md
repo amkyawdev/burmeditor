@@ -1,160 +1,296 @@
-# Burme Editor
+# 🎬 Burmeditor
 
-Professional Video Editor with 15 Built-in Tools
+### Professional Video Editing Suite for Mobile & Web
 
-## 📱 Features
+![Flutter](https://img.shields.io/badge/Flutter-3.16.9-02569B?style=for-the-badge&logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-3.0.0-0175C2?style=for-the-badge&logo=dart)
+![Python](https://img.shields.io/badge/Python-Flask-3776AB?style=for-the-badge&logo=python)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-FF6B6B?style=for-the-badge)
 
-- **15 Professional Tools**: Crop, Audio, Color, Text, Title, Layering, Transform, Speed, Transition, Effects, Masking, Stabilize, Image Overlay, Subtitles, Export
-- **Multi-language Support**: English, Myanmar, Thai, Vietnamese, Russian
-- **FFmpeg-powered Processing**: Fast and efficient video processing
-- **Cross-platform**: Android, iOS, and Web support
-- **Modern UI**: Built with Flutter Material Design 3
+---
 
-## 🛠️ Tools Overview
+> **Burmeditor** is a powerful, cross-platform video editing application designed for content creators, filmmakers, and professionals. Transform your footage into stunning videos with 15 built-in professional tools.
 
-| Tool | Description |
-|------|-------------|
-| 🌐 Crop | Crop and resize video frames |
-| 🔊 Audio | Edit audio tracks, volume, fade in/out |
-| 🎨 Color | Adjust brightness, contrast, saturation, hue |
-| 📝 Text | Add text overlays with customizable fonts |
-| 📰 Title | Create title sequences with various styles |
-| 🔢 Layering | Manage video layers and z-order |
-| ↔️ Transform | Scale, rotate, and position elements |
-| ⚡ Speed | Adjust playback speed (0.25x - 4x) |
-| 🔄 Transition | Add smooth transitions between clips |
-| ✨ Effects | Apply visual effects (blur, vignette, etc.) |
-| ⬜ Masking | Create custom masks for compositing |
-| 📐 Stabilize | Stabilize shaky footage |
-| 🖼️ Image Overlay | Overlay images on video |
-| 📑 Subtitles | Add and style subtitles |
-| 💾 Export | Export in multiple formats and qualities |
+[![Star](https://img.shields.io/badge/⭐%20Star-This%20Repo-FAB0050?style=for-the-badge)](https://github.com/amkyawdev/burmeditor/stargazers)
+[![Fork](https://img.shields.io/badge/🍴%20Fork-On%20GitHub-333333?style=for-the-badge)](https://github.com/amkyawdev/burmeditor/fork)
+
+---
+
+## ✨ Features
+
+### 🎯 15 Professional Editing Tools
+
+| Icon | Tool | Description |
+|------|------|-------------|
+| 🌐 | **Crop** | Precision crop and resize with aspect ratio presets |
+| 🔊 | **Audio** | Advanced audio editing with volume, fade, and mixing |
+| 🎨 | **Color** | Professional color grading with curves and LUT support |
+| 📝 | **Text** | Dynamic text overlays with custom fonts and animations |
+| 📰 | **Title** | Cinematic title sequences with animated templates |
+| 🔢 | **Layering** | Multi-track compositing with z-order control |
+| ↔️ | **Transform** | Scale, rotate, and position with keyframe animation |
+| ⚡ | **Speed** | Variable speed control from 0.25x to 4x |
+| 🔄 | **Transition** | 20+ smooth transitions between clips |
+| ✨ | **Effects** | Visual effects library including blur, glow, and distortion |
+| ⬜ | **Masking** | Shape and brush masks for advanced compositing |
+| 📐 | **Stabilize** | Video stabilization for shaky footage |
+| 🖼️ | **Image Overlay** | Picture-in-picture with positioning controls |
+| 📑 | **Subtitles** | Subtitle editor with styling and positioning |
+| 💾 | **Export** | Multi-format export with quality presets |
+
+### 🌎 Multi-Language Support
+
+| Language | Code | Status |
+|----------|------|--------|
+| 🇺🇸 English | EN | ✅ |
+| 🇲🇲 မြန်မာ | MY | ✅ |
+| 🇹🇭 ภาษาไทย | TH | ✅ |
+| 🇻🇳 Tiếng Việt | VI | ✅ |
+| 🇷🇺 Русский | RU | ✅ |
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         BURMEDITOR                               │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐      │
+│  │   Android    │    │     iOS      │    │     Web      │      │
+│  │     📱       │    │     🍎       │    │     🌐       │      │
+│  └──────┬───────┘    └──────┬───────┘    └──────┬───────┘      │
+│         │                   │                   │                │
+│         └───────────────────┼───────────────────┘                │
+│                             │                                    │
+│                    ┌────────▼────────┐                          │
+│                    │   Flutter App    │                        │
+│                    │   (Dart/State)   │                        │
+│                    └────────┬────────┘                          │
+│                             │                                    │
+│         ┌───────────────────┼───────────────────┐                │
+│         │                   │                   │                │
+│  ┌──────▼───────┐    ┌──────▼───────┐    ┌──────▼───────┐      │
+│  │   Services   │    │    Models    │    │    Widgets   │      │
+│  └──────────────┘    └──────────────┘    └──────────────┘      │
+│                                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                         Backend API                              │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│  │   Video     │  │   Audio     │  │  Subtitle   │              │
+│  │  Processing │  │  Processing │  │  Processing │              │
+│  └─────────────┘  └─────────────┘  └─────────────┘              │
+│                                                                  │
+│                    Flask + FFmpeg + Redis                       │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Flutter SDK 3.16.9+
-- Dart SDK 3.0.0+
-- Android Studio / Xcode (for mobile builds)
+
+```bash
+# Flutter SDK
+Flutter 3.16.9+
+
+# Dart SDK
+Dart 3.0.0+
+
+# For Backend
+Python 3.11+
+FFmpeg
+Docker (optional)
+```
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/amkyawdev/burmeeditor.git
-cd burmeeditor
+# 1. Clone the repository
+git clone https://github.com/amkyawdev/burmeditor.git
+cd burmeditor
 
-# Install Flutter dependencies
+# 2. Install Flutter dependencies
 cd mobile
 flutter pub get
 
-# Run the app
+# 3. Run the app
 flutter run
 ```
 
-### Build Instructions
+### Build Commands
 
-#### Android APK
-```bash
-cd mobile
-flutter build apk --release
-```
+| Platform | Command | Output |
+|----------|---------|--------|
+| Android APK | `flutter build apk --release` | `.apk` file |
+| Android AAB | `flutter build appbundle --release` | `.aab` file |
+| iOS | `flutter build ios --release --no-codesign` | `.app` folder |
+| Web | `flutter build web --release` | `build/web/` folder |
 
-#### iOS
-```bash
-cd mobile
-flutter build ios --release --no-codesign
-```
-
-#### Web
-```bash
-cd mobile
-flutter build web --release
-```
-
-## 📁 Project Structure
-
-```
-burmeeditor/
-├── .github/
-│   └── workflows/          # CI/CD workflows
-├── backend/                # Backend API (Flask)
-├── docker/                 # Docker configuration
-├── mobile/                 # Flutter mobile app
-│   ├── lib/
-│   │   ├── app/           # App configuration
-│   │   ├── screens/       # UI screens
-│   │   ├── widgets/       # Reusable widgets
-│   │   ├── services/     # App services
-│   │   ├── models/        # Data models
-│   │   └── utils/         # Utilities
-│   └── assets/            # App assets
-├── scripts/               # Build scripts
-├── docs/                 # Documentation
-└── version.json           # Version info
-```
+---
 
 ## 🐳 Docker Deployment
 
 ```bash
-# Development
+# Development Environment
 cd docker
 docker-compose up -d
 
-# Production
+# Production Environment
 docker-compose -f docker-compose.prod.yml up -d
+
+# Access the app
+open http://localhost:5000
 ```
-
-## 🌐 Backend API
-
-The backend provides REST APIs for:
-- Video processing (trim, watermark, thumbnails)
-- Audio processing (extract, mix, normalize)
-- Subtitle management
-- Version checking and updates
-
-### API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/videos` | GET/POST | List/Upload videos |
-| `/api/videos/<id>` | GET/DELETE | Video operations |
-| `/api/audio` | GET/POST | List/Upload audio |
-| `/api/subtitles` | GET/POST | Subtitle management |
-| `/api/update/check` | GET | Check for updates |
-
-## 📦 CI/CD
-
-GitHub Actions workflows for:
-- APK build
-- AAB build (Google Play)
-- iOS build
-- Web build
-- Auto releases
-- Docker image publishing
-
-## 🌎 Supported Languages
-
-- 🇺🇸 English (en)
-- 🇲🇲 Myanmar (my)
-- 🇹🇭 Thai (th)
-- 🇻🇳 Vietnamese (vi)
-- 🇷🇺 Russian (ru)
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Developer
-
-**Aung Myo Kyaw** (amkyawdev)
-
-## 🙏 Acknowledgments
-
-- Flutter team for the amazing framework
-- FFmpeg for video processing capabilities
-- All contributors and supporters
 
 ---
 
-Made with ❤️ for video creators
+## 🌐 API Documentation
+
+### Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/videos` | List all videos |
+| `POST` | `/api/videos` | Upload video |
+| `GET` | `/api/videos/<id>` | Get video details |
+| `DELETE` | `/api/videos/<id>` | Delete video |
+| `POST` | `/api/videos/process` | Process video |
+| `GET` | `/api/audio` | List audio files |
+| `POST` | `/api/audio` | Upload audio |
+| `GET` | `/api/subtitles` | List subtitles |
+| `POST` | `/api/subtitles` | Upload subtitle |
+| `GET` | `/api/update/check` | Check for updates |
+
+---
+
+## 🧪 CI/CD Pipeline
+
+| Workflow | Trigger | Status |
+|----------|---------|--------|
+| `01-build-apk.yml` | Push to main/develop | ✅ |
+| `02-build-aab.yml` | New tag (v*) | ✅ |
+| `03-build-ios.yml` | Push to main/develop | ✅ |
+| `04-build-web.yml` | Push to main/develop | ✅ |
+| `05-auto-release.yml` | New tag (v*) | ✅ |
+| `06-docker-publish.yml` | Push to main | ✅ |
+| `07-update-checker.yml` | Every 6 hours | ✅ |
+| `08-cleanup.yml` | Weekly | ✅ |
+
+---
+
+## 📂 Project Structure
+
+```
+burmeditor/
+├── .github/
+│   └── workflows/           # 8 CI/CD workflows
+│
+├── backend/                  # Flask Backend API
+│   └── app/
+│       ├── routes/         # API endpoints
+│       ├── services/       # Business logic
+│       ├── models/         # Data models
+│       └── utils/          # Utilities
+│
+├── mobile/                  # Flutter Mobile App
+│   └── lib/
+│       ├── app/            # App configuration
+│       ├── screens/        # UI Screens
+│       ├── widgets/        # Reusable Widgets
+│       ├── services/        # App Services
+│       └── models/         # Data Models
+│
+├── docker/                  # Docker Configuration
+│
+├── version.json            # Version Info
+├── README.md               # This file
+└── LICENSE                # MIT License
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Flutter | 3.16.9 | Cross-platform UI |
+| Dart | 3.0.0 | Programming language |
+| Riverpod | 2.4.0 | State management |
+| Material Design 3 | - | UI framework |
+
+### Backend
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Flask | 3.0.0 | Web framework |
+| Python | 3.11 | Language |
+| FFmpeg | Latest | Video processing |
+| Redis | 7 | Caching |
+| PostgreSQL | 15 | Database |
+
+---
+
+## 📊 Version History
+
+| Version | Build | Date | Changes |
+|---------|-------|------|---------|
+| 1.0.0 | 101 | 2026-05-31 | Initial release with 15 tools |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](docs/CONTRIBUTING.md) before submitting a PR.
+
+```bash
+# Fork and clone the repo
+git clone https://github.com/your-username/burmeditor.git
+
+# Create a feature branch
+git checkout -b feature/your-feature
+
+# Make your changes and commit
+git commit -m "feat: add new feature"
+
+# Push and create PR
+git push origin feature/your-feature
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Developer
+
+**Aung Myo Kyaw** (amkyawdev)  
+🌐 [GitHub](https://github.com/amkyawdev)  
+📧 amkyawdev@example.com
+
+---
+
+## 🙏 Acknowledgments
+
+- [Flutter](https://flutter.dev) - Cross-platform UI framework
+- [FFmpeg](https://ffmpeg.org) - Video processing powerhouse
+- [Riverpod](https://riverpod.dev) - State management
+- All contributors and open-source community
+
+---
+
+<div align="center">
+
+### ⭐ If you find Burmeditor helpful, please give it a star!
+
+**Made with ❤️ for video creators worldwide**
+
+*Copyright © 2026 Burmeditor. All rights reserved.*
+
+</div>
