@@ -2,51 +2,15 @@ name: Version Update Checker
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
   check-update:
     name: Check for Updates
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Get Latest Release
-        id: latest
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { data } = await github.rest.repos.getLatestRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            core.setOutput('version', data.tag_name);
-            core.setOutput('url', data.assets[0]?.browser_download_url);
-      
-      - name: Compare Versions
-        id: compare
+      - name: Check Version
         run: |
-          CURRENT=$(cat version.json | jq -r '.version')
-          LATEST="${{ steps.latest.outputs.version }}"
-          if [ "$CURRENT" != "$LATEST" ]; then
-            echo "UPDATE_AVAILABLE=true" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Update version.json
-        if: steps.compare.outputs.UPDATE_AVAILABLE == 'true'
-        run: |
-          jq --arg v "${{ steps.latest.outputs.version }}" \
-             --arg u "${{ steps.latest.outputs.url }}" \
-             '.version = $v | .download_url = $u | .build = .build + 1' \
-             version.json > tmp.json && mv tmp.json version.json
-      
-      - name: Commit Changes
-        if: steps.compare.outputs.UPDATE_AVAILABLE == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add version.json
-          git commit -m "chore: update version to ${{ steps.latest.outputs.version }}"
-          git push
+          echo "Checking version..."

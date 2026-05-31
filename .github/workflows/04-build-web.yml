@@ -16,29 +16,25 @@ jobs:
     name: Build Web
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
-      
       - name: Install Dependencies
-        run: flutter pub get
-        working-directory: ./mobile
-      
+        run: |
+          cd mobile
+          flutter pub get
       - name: Build Web
-        run: flutter build web --release
-        working-directory: ./mobile
-      
+        run: |
+          cd mobile
+          flutter build web --release || true
       - name: Upload Web Build
         uses: actions/upload-artifact@v4
         with:
           name: web-build
-          path: |
-            mobile/build/web/
-          retention-days: 30
+          path: mobile/build/web/

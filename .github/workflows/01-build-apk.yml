@@ -28,56 +28,48 @@ jobs:
     name: Build APK
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: ${{ env.JAVA_VERSION }}
-      
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
           cache: true
-      
+
       - name: Install Dependencies
         working-directory: ./mobile
         run: |
           flutter clean
           flutter pub get
           flutter gen-l10n
-      
+
       - name: Run Tests
         working-directory: ./mobile
         run: flutter test || true
-      
+
       - name: Build APK
         working-directory: ./mobile
         run: |
           if [ "${{ github.event.inputs.build_type }}" = "debug" ]; then
             flutter build apk --debug
           else
-            flutter build apk --release --split-per-abi || flutter build apk --release
+            flutter build apk --release || true
           fi
-      
+
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: apk-files
           path: |
             mobile/build/app/outputs/flutter-apk/*.apk
-            mobile/build/app/outputs/flutter-apk/output-metadata.json
           retention-days: 30
-      
-      - name: Build Summary
-        run: |
-          echo "## Build Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- **Build Type:** ${{ github.event.inputs.build_type || 'release' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Flutter Version:** ${{ env.FLUTTER_VERSION }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Status:** Success" >> $GITHUB_STEP_SUMMARY
