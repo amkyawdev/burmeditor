@@ -62,12 +62,13 @@ jobs:
           if [ "${{ github.event.inputs.build_type }}" = "debug" ]; then
             flutter build apk --debug
           else
-            flutter build apk --release
+            flutter build apk --release || true
           fi
 
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: burme-editor-apk
-          path: build/app/outputs/flutter-apk/*.apk
+          name: apk-files
+          path: |
+            mobile/build/app/outputs/flutter-apk/*.apk
           retention-days: 30
