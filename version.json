@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "build": 1,
+  "build_date": "2026-05-31",
+  "release_date": "2026-05-31",
+  "channel": "stable",
+  "min_app_version": "1.0.0",
+  "download_url": "",
+  "changelog": [
+    "Initial release",
+    "15 professional video editing tools",
+    "Multi-language support (EN, MY, TH, VI, RU)",
+    "FFmpeg-powered video processing",
+    "Cross-platform support (Android, iOS, Web)"
+  ],
+  "features": [
+    "crop",
+    "audio",
+    "color",
+    "text",
+    "title",
+    "layering",
+    "transform",
+    "speed",
+    "transition",
+    "effects",
+    "masking",
+    "stabilize",
+    "image_overlay",
+    "subtitles",
+    "export"
+  ]
+}

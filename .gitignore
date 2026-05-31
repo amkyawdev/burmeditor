@@ -1,0 +1,111 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+
+# Flutter/Dart
+*.pub-cache/
+*.pub/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+
+# Android
+*.apk
+*.aab
+*.dex
+*.class
+*.jar
+*.jks
+android/app/build/
+android/build/
+android/gradle/
+android/local.properties
+*.log
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/GeneratedPluginRegistrant.m
+ios/Flutter/GeneratedPluginRegistrant.mm
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.xcuserstate
+ios/Podfile.lock
+
+# Mobile build outputs
+*.apk
+*.app
+*.framework
+*.mobileprovision
+
+# Backend
+__pycache__/
+*.py[cod]
+venv/
+ENV/
+env.bak/
+venv.bak/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.so
+
+# Docker
+.dockerignore
+
+# IDE
+.idea/
+.vscode/
+*.swo
+*.swn
+*.iml
+
+# Firebase
+google-services.json
+*.xcworkspace
+
+# Testing
+coverage/
+.nyc_output/
+test_report/
+
+# Build logs
+build_logs/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+
+# Artifacts
+*.apk
+*.aab
+*.ipa
+*.zip
+*.tar.gz
+artifacts/

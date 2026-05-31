@@ -1,0 +1,44 @@
+name: 🌐 Build Web
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/04-build-web.yml'
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: '3.16.9'
+
+jobs:
+  build-web:
+    name: 🏗️ Build Web
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+      
+      - name: Install Dependencies
+        run: flutter pub get
+        working-directory: ./mobile
+      
+      - name: Build Web
+        run: flutter build web --release
+        working-directory: ./mobile
+      
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: |
+            mobile/build/web/
+          retention-days: 30

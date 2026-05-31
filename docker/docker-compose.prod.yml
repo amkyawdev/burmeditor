@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.prod
+    container_name: burme-editor-backend-prod
+    ports:
+      - "5000:5000"
+    volumes:
+      - app-storage:/app/storage
+    environment:
+      - FLASK_ENV=production
+      - STORAGE_PATH=/app/storage
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DATABASE_URL=postgresql://postgres:password@db:5432/burme_editor
+    depends_on:
+      - redis
+      - db
+    restart: always
+    networks:
+      - burme-network-prod
+
+  redis:
+    image: redis:7-alpine
+    container_name: burme-editor-redis-prod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-prod-data:/data
+    restart: always
+    networks:
+      - burme-network-prod
+
+  db:
+    image: postgres:15-alpine
+    container_name: burme-editor-db-prod
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=burme_editor
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - burme-network-prod
+
+  nginx:
+    image: nginx:alpine
+    container_name: burme-editor-nginx-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - burme-network-prod
+
+volumes:
+  app-storage:
+  redis-prod-data:
+  postgres-data:
+
+networks:
+  burme-network-prod:
+    driver: bridge
