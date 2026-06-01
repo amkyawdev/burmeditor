@@ -83,8 +83,7 @@ class ProjectService {
       final index = projects.indexWhere((p) => p.id == project.id);
       
       if (index >= 0) {
-        project.updatedAt = DateTime.now();
-        projects[index] = project;
+        projects[index] = project.copyWith(updatedAt: DateTime.now());
         
         await CacheService.instance.set(
           _recentProjectsKey,
