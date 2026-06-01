@@ -242,6 +242,19 @@ burmeditor/
 
 ---
 
+## 📥 Download
+
+### Android APK
+[![Build APK](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml/badge.svg)](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml)
+
+Download the latest APK from GitHub Actions artifacts:
+👉 [Download APK](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml)
+
+### Web Demo
+Coming soon...
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](docs/CONTRIBUTING.md) before submitting a PR.
