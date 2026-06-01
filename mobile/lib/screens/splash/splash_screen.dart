@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import '../../app/routes.dart';
 import '../../services/local/storage_service.dart';
-import '../../services/update/update_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,6 +20,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    debugPrint('SplashScreen: initState called');
+    
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -45,11 +46,14 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _initializeApp() async {
+    debugPrint('SplashScreen: Starting app initialization');
+    
     // Simulate loading time for splash animation
     await Future.delayed(const Duration(seconds: 2));
 
     // Check if first launch
     final isFirstLaunch = StorageService.instance.getBool('first_launch') ?? true;
+    debugPrint('SplashScreen: First launch = $isFirstLaunch');
 
     if (isFirstLaunch) {
       await StorageService.instance.setBool('first_launch', false);
@@ -57,6 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     // Navigate to home
     if (mounted) {
+      debugPrint('SplashScreen: Navigating to home');
       Navigator.of(context).pushReplacementNamed(Routes.home);
     }
   }
@@ -69,6 +74,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('SplashScreen: Building UI');
+    
     // Set status bar style
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
