@@ -1,4 +1,4 @@
-import '../api_client.dart';
+import 'api_client.dart';
 
 class VideoApi {
   static Future<Map<String, dynamic>> getVideos() async {

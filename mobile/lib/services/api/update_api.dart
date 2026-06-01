@@ -1,4 +1,4 @@
-import '../api_client.dart';
+import 'api_client.dart';
 
 class UpdateApi {
   static Future<Map<String, dynamic>> checkForUpdate(String currentVersion) async {

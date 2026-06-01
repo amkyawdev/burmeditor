@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'app.dart';
-import 'app/theme.dart';
-import 'app/routes.dart';
-import 'app/constants.dart';
+import 'theme.dart';
+import 'routes.dart';
+import 'constants.dart';
 
 class BurmeEditorApp extends ConsumerWidget {
   const BurmeEditorApp({super.key});
