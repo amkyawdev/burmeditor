@@ -72,6 +72,7 @@ jobs:
           fi
 
       - name: Upload APK Artifacts
+        working-directory: ./mobile
         uses: actions/upload-artifact@v4
         with:
           name: burme-editor-apk
