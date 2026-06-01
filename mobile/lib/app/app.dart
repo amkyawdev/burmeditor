@@ -12,7 +12,7 @@ class BurmeEditorApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: APP_NAME,
+      title: AppConstants.APP_NAME,
       debugShowCheckedModeBanner: false,
       
       // Theme configuration
