@@ -245,10 +245,14 @@ burmeditor/
 ## 📥 Download
 
 ### Android APK
-[![Build APK](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml/badge.svg)](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml)
+[![Build APK](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml/badge.svg)](https://github.com/amkyawdev/burmeditor/actions)
 
-Download the latest APK from GitHub Actions artifacts:
-👉 [Download APK](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml)
+📦 **Latest APK:** [Download from GitHub Actions](https://github.com/amkyawdev/burmeditor/actions/workflows/01-build-apk.yml)
+
+Or manually:
+1. Go to [Actions](https://github.com/amkyawdev/burmeditor/actions)
+2. Select latest "Build APK" workflow run
+3. Download `burme-editor-apk` artifact
 
 ### Web Demo
 Coming soon...
