@@ -63,6 +63,11 @@ jobs:
           cd mobile
           flutter test || true
 
+      - name: Analyze Code
+        run: |
+          cd mobile
+          flutter analyze || true
+
       - name: Build APK
         run: |
           cd mobile
