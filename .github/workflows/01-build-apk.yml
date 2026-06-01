@@ -50,21 +50,22 @@ jobs:
         run: |
           cd mobile
           flutter config --enable-android
-          flutter create --platforms=android .
+          flutter create --platforms=android . --no-pub
 
       - name: Install Dependencies
-        working-directory: ./mobile
         run: |
+          cd mobile
           flutter clean
           flutter pub get
 
       - name: Run Tests
-        working-directory: ./mobile
-        run: flutter test || true
+        run: |
+          cd mobile
+          flutter test || true
 
       - name: Build APK
-        working-directory: ./mobile
         run: |
+          cd mobile
           if [ "${{ github.event.inputs.build_type }}" = "debug" ]; then
             flutter build apk --debug
           else
@@ -72,9 +73,8 @@ jobs:
           fi
 
       - name: Upload APK Artifacts
-        working-directory: ./mobile
         uses: actions/upload-artifact@v4
         with:
           name: burme-editor-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: mobile/build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
